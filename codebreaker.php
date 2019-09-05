@@ -30,7 +30,22 @@
 			$matrixNumber = str_split($cbNumber);
 			$allMatches = count(array_intersect($this->randomNumber, $matrixNumber));
 			$exactMatches = count(array_intersect_assoc($this->randomNumber, $matrixNumber));
-			$compareResult = str_repeat(self::PLUS, $exactMatches) . str_repeat(self::MINUS, $allMatches-$exactMatches);
+			$countRandomNumber = array_count_values($this->randomNumber);
+			$countMatrixNumber = array_count_values($matrixNumber);
+			$uniqueRandomNumber = array_unique($this->randomNumber);
+			foreach ($uniqueRandomNumber as $value) {
+				if (array_key_exists($value, $countMatrixNumber) && $countMatrixNumber[$value] < $countRandomNumber[$value]) {
+					$diff = $countRandomNumber[$value] - $countMatrixNumber[$value];
+					if($diff > 0){
+						$allMatches = $allMatches - $diff;
+					}
+				}
+			}
+			$minusMatches = $allMatches-$exactMatches;
+			if($minusMatches < 0){
+				$minusMatches = 0;
+			}
+			$compareResult = str_repeat(self::PLUS, $exactMatches) . str_repeat(self::MINUS, $minusMatches);
 			return $compareResult;
 		}
 
@@ -43,9 +58,12 @@
 
 	$code = new secretCode();
 	
-	$code->setSecretNumber(array(1, 2, 3, 4));
-	#$code->setSecretNumber(array(3, 4, 3, 5));
-	#$code->setSecretNumber(array(4, 3, 4, 2));
+	# Examples
+	############################################
+	# $code->setSecretNumber(array(1, 2, 3, 4));
+	# $code->setSecretNumber(array(3, 4, 3, 5));
+	# $code->setSecretNumber(array(4, 3, 4, 2));
+	# $code->setSecretNumber(array(2, 3, 1, 4));
 	
 	$stdin = fopen('php://stdin', 'r');
 
