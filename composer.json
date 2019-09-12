@@ -1,0 +1,21 @@
+{
+	"name": "rafabailon/codebreaker",
+	"authors": [
+		{
+			"name": "rafabailon",
+			"email": "rafael@aircury.com"
+		}
+	],
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Game\\Codebreaker\\": "src/",
+			"Game\\Codebreaker\\Object\\": "src/Object",
+			"Game\\Codebreaker\\View\\": "src/View"
+		}
+	},
+	"config": {
+		"bin-dir": "bin",
+		"optimize-autoloader": true
+	}
+}
