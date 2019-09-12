@@ -2,16 +2,16 @@
 
 <?php
 
-	require __DIR__ . '/../vendor/autoload.php';
+	use Game\Codebreaker\Object\SecretCode;require __DIR__ . '/../vendor/autoload.php';
 
     # Examples
     ############################################
-    # $code->setSecretNumber(array(1, 2, 3, 4));
-    # $code->setSecretNumber(array(3, 4, 3, 5));
-    # $code->setSecretNumber(array(4, 3, 4, 2));
-    # $code->setSecretNumber(array(2, 3, 1, 4));
+    # $game->exec(new SecretCode(array(1, 2, 3, 4)));
+    # $game->exec(new SecretCode(array(3, 4, 3, 5)));
+    # $game->exec(new SecretCode(array(4, 3, 4, 2)));
+    # $game->exec(new SecretCode(array(2, 3, 1, 4)));
 
 	$game = new Game\Codebreaker\CodeBreaker();
-	$game->exec();
+	$game->exec(new SecretCode());
 
 ?>
